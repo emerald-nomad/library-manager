@@ -1,0 +1,23 @@
+extends layout
+
+block main
+    h1 Patron: #{patron_name}
+    include error
+    p
+        strong Book Title: 
+        | #{book_title}
+    p 
+        strong Loaned By: 
+        | #{patron_name}
+    p   
+        strong Loaned On: 
+        | #{loaned_on}
+    p 
+        strong Return By: 
+        | #{return_by}
+    form(action=`/return_book/${id}?_method=PUT` method="post")
+        p
+            label(for="returned_on") Returned on:
+            input(id="returned_on" name="returned_on" type="text" value=`${date}`)
+        p
+            input(type="submit" value="Return Book")

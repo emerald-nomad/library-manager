@@ -1,0 +1,57 @@
+extends layout
+
+block main
+    h1 Loans
+    p: a(href="/new_loan" class="button") Create New Loan
+    p Filters
+        a(href="/loans")  All 
+        | |
+        a(href="/overdue_loans")  Overdue 
+        | |
+        a(href="/checked_loans")  Checked Out
+    table
+        thead     
+            tr 
+                th Book
+                th Patron
+                th Loaned on
+                th Return by
+                th Returned on
+                th Action
+        tbody
+            each loan in loans  
+                tr
+                    td: a(href=`/book_detail/${loan.book_id}`) #{loan.book_title}
+                    td: a(href=`/patron_detail/${loan.patron_id}`) #{loan.patron_name}
+                    td= loan.loaned_on
+                    td= loan.return_by
+                    if (loan.returned_on)
+                        td= loan.returned_on
+                    else 
+                        td
+                    if (!loan.returned_on)
+                        td: a(href=`/return_book/${loan.id}` class="button") Return Book
+                    else
+                        td
+                
+            //- tr
+            //-     td: a(href="/book_detail") A Brief History of Time
+            //-     td: a(href="/patron_detail") Andrew Chalkley
+            //-     td 2015-12-12
+            //-     td 2015-12-19
+            //-     td
+            //-     td: a(href="/return_book" class="button") Return book
+            //- tr
+            //-     td: a(href="/book_detail") The Universe in a Nutshell
+            //-     td: a(href="/patron_detail") Alena Holligan
+            //-     td 2015-12-13
+            //-     td 2015-12-20
+            //-     td
+            //-     td: a(href="/return_book" class="button") Return book
+            //- tr
+            //-     td: a(href="/book_detail") The Martian
+            //-     td: a(href="/patron_detail") Michael Poley
+            //-     td 2015-12-13
+            //-     td 2015-12-20
+            //-     td 2015-12-17
+            //-     td

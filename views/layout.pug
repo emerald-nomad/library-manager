@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+    head
+        if title
+            title= title
+        else 
+            title Library Manager
+        link(rel='stylesheet', href='/static/stylesheets/style.css')
+    body
+        header
+            nav
+                ul
+                    li: a(href='/all_books') Books
+                    li: a(href='/patrons') Patrons
+                    li: a(href='/loans') Loans
+        main
+            block main
+                h1 Library Manager
+                p Welcome to Library Manager
+                ul
+                    li Books
+                        ul
+                            li: a(href='/books/new') New Book
+                            li: a(href='/all_books') List All
+                            li: a(href='/books?filter=overdue') List Overdue
+                            li: a(href='/books?filter=checked_out') List Checked        
+                    li Patrons
+                        ul
+                            li: a(href="/patrons/new") New Patron
+                            li: a(href="/patrons") List All
+                    li Loans
+                        ul
+                            li: a(href="/new_loan") New loan
+                            li: a(href="/loans") List All
+                            li: a(href="/overdue_loans") List Overdue
+                            li: a(href="/checked_loans") List Checked Out 

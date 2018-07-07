@@ -1,0 +1,21 @@
+extends layout
+
+block main
+    h1 Patrons
+    p: a(href="/new_patron" class="button") Create New Patron
+    table
+        thead
+            tr
+                th Name
+                th Address
+                th Email
+                th Library
+                th Zip
+        tbody
+            each patron in patrons
+                tr 
+                    td: a(href=`/patron_detail/${patron.id}`) #{patron.name}
+                    td= patron.address
+                    td= patron.email
+                    td= patron.library_id
+                    td= patron.zip_code
